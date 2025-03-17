@@ -1,12 +1,11 @@
 const asyncHandler = (requestHandler) => {
-    (req, res, next) => {
-        Promise.resolve(reuestHandler(req, res, next)).catch((err) => next(err))
-    }
-}
+    return (req, res, next) => {
+        Promise.resolve(requestHandler(req, res, next)) // Fixed typo
+            .catch((err) => next(err)); // Ensures errors are passed to Express error handler
+    };
+};
 
-
-
-export { asyncHandler }
+export { asyncHandler };
 
 
 
